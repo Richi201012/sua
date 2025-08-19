@@ -1,0 +1,89 @@
+{
+  "logo": {
+    "src": "../../assets/img/logoCDMX.png",
+    "alt": "Logo CDMX",
+    "clases": "h-10 w-auto object-contain drop-shadow-sm"
+  },
+  "navegacion": [
+    {
+      "to": "/puntos-venta",
+      "label": "Puntos de Venta",
+      "icon": "store",
+      "end": false,
+      "mostrarEnMovil": true
+    },
+    {
+      "to": "/mapa",
+      "label": "Mapa",
+      "icon": "map",
+      "end": false,
+      "mostrarEnMovil": true
+    },
+    {
+      "to": "/gestion",
+      "label": "Gestión",
+      "icon": "settings",
+      "end": false,
+      "mostrarEnMovil": true
+    },
+    {
+      "to": "/registro",
+      "label": "Registro",
+      "icon": "add_business",
+      "end": false,
+      "mostrarEnMovil": true
+    },
+    {
+      "to": "/reportes",
+      "label": "Reportes",
+      "icon": "analytics",
+      "end": false,
+      "mostrarEnMovil": true
+    }
+  ],
+  "acciones": [
+    {
+      "tipo": "fecha",
+      "mostrarEn": ["desktop"],
+      "formato": {
+        "fecha": "DD/MMM/YYYY",
+        "hora": "HH:mm"
+      }
+    },
+    {
+      "tipo": "boton",
+      "icon": "notifications",
+      "label": "Notificaciones",
+      "accion": "notificaciones",
+      "mostrarEn": ["desktop"],
+      "clases": "w-10 h-10 rounded-xl bg-gray-50 hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition-all duration-200 hover:scale-105 hover:shadow-md"
+    }
+  ],
+  "menuMovil": {
+    "iconoAbrir": "menu",
+    "iconoCerrar": "close",
+    "posicion": "derecha",
+    "overlayColor": "bg-black/20 backdrop-blur-sm"
+  },
+  "estilos": {
+    "navbar": {
+      "fondo": "bg-white/95 backdrop-blur-lg",
+      "altura": "h-16",
+      "borde": "border-b border-gray-100",
+      "sombra": "shadow-sm"
+    },
+    "enlaces": {
+      "base": "group relative flex items-center px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+      "normal": "text-gray-600 hover:text-blue-600 hover:bg-gray-50",
+      "activo": "text-blue-700 bg-blue-50 shadow-sm",
+      "movil": "group flex items-center px-6 py-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50/50 transition-all duration-200 border-l-4"
+    },
+    "botonHamburguesa": {
+      "fondo": "bg-tertiary",
+      "hover": "hover:bg-tertiary",
+      "tamaño": "w-10 h-10",
+      "forma": "rounded-full",
+      "texto": "text-white"
+    }
+  }
+}

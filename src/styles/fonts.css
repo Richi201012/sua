@@ -1,0 +1,44 @@
+/* 
+Coloca tus archivos de fuente en public/fonts/ y actualiza las rutas aquí
+*/
+
+/* FUENTE PRINCIPAL - Montserrat (títulos, textos principales) */
+@font-face {
+  font-family: "Primary";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FUENTE SECUNDARIA - OPCIONAL
+@font-face {
+  font-family: "Secondary";
+  src: url("/fonts/font-secundaria.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* FUENTE POR DEFECTO - Aplica Primary a todo el sitio */
+* {
+  font-family: "Primary", sans-serif;
+}
+
+/*Puedes agregar etiquetas como <h1>, <h2>, <p>, etc
+y para personalizar que fuente usarán, desde aqui 
+modificas toda la tipografía del sitio.
+*/
+
+/* 
+PARA CAMBIAR LAS FUENTES:
+========================
+
+1. REEMPLAZAR ARCHIVOS:
+   - Coloca tus nuevas fuentes en public/fonts/
+   - Actualiza las rutas en @font-face arriba
+
+2. FORMATOS SOPORTADOS:
+   - .ttf (TrueType) - format("truetype")
+   - .woff2 (Web Open Font) - format("woff2") 
+   - .woff - format("woff")
+   - .otf (OpenType) - format("opentype")
+*/

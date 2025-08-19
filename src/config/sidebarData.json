@@ -1,0 +1,38 @@
+{
+  "header": {
+    "titulo": "Template React",
+    "subtitulo": "Nombre del proyecto",
+    "icono": {
+      "abierto": "chevron_left",
+      "cerrado": "chevron_right"
+    }
+  },
+  "navegacion": [
+    {
+      "to": "/",
+      "label": "Inicio",
+      "icon": "home",
+      "description": "Ir a la página de inicio",
+      "category": "home",
+      "end": true
+    }
+  ],
+  "estilos": {
+    "ancho": {
+      "abierto": "w-72",
+      "cerrado": "w-20"
+    },
+    "colores": {
+      "fondo": "bg-white",
+      "borde": "border-white border-r-2 z-10",
+      "texto": "text-black",
+      "hover": "hover:bg-gray-200",
+      "activo": "bg-gray-300",
+      "icono": {
+        "fondo": "bg-secondary",
+        "activoFondo": "bg-gray-800",
+        "texto": "text-white"
+      }
+    }
+  }
+}

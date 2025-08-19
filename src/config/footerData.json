@@ -1,0 +1,160 @@
+{
+  "logo": {
+    "imagen": "https://adip.cdmx.gob.mx/themes/base/assets/images/logos/Logo_Generico_F.png",
+    "textoAlternativo": "Logo de la Dependencia"
+  },
+  "columnas": [
+    {
+      "ancho": "lg:col-span-4",
+      "contenido": {
+        "titulo": "Atención ciudadana",
+        "tipo": "informacion",
+        "datos": [
+          {
+            "etiqueta": "Dirección:",
+            "valor": [
+              "Calle José Mariano Jiménez 13",
+              "Colonia Centro,",
+              "Alcaldía Cuauhtémoc",
+              "C.P. 06080, Ciudad de México"
+            ]
+          },
+          {
+            "etiqueta": "Teléfonos:",
+            "valor": ["553090 0500", "555447 5100"]
+          },
+          {
+            "etiqueta": "Correo electrónico:",
+            "valor": ["infoadip@cdmx.gob.mx"]
+          },
+          {
+            "etiqueta": "Horario:",
+            "valor": ["Lunes a viernes 09:00-19:00"]
+          }
+        ],
+        "seccionExtra": {
+          "titulo": "Redes sociales",
+          "tipo": "iconos",
+          "elementos": [
+            {
+              "nombre": "Facebook",
+              "url": "https://www.facebook.com/Agencia-Digital-de-Innovaci%C3%B3n-P%C3%BAblica-233853317529451",
+              "icono": "fa fa-facebook",
+              "clases": "text-blue-600 hover:text-blue-800"
+            },
+            {
+              "nombre": "Twitter",
+              "url": "https://twitter.com/LaAgenciaCDMX",
+              "icono": "fa fa-twitter",
+              "clases": "text-blue-400 hover:text-blue-600"
+            },
+            {
+              "nombre": "YouTube",
+              "url": "https://www.youtube.com/channel/UCh6gPsgvNWDhJ8afDWlH6bQ",
+              "icono": "fa fa-youtube",
+              "clases": "text-red-600 hover:text-red-800"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ancho": "lg:col-span-3",
+      "contenido": {
+        "titulo": "Navegación",
+        "tipo": "enlaces",
+        "elementos": [
+          { "texto": "Inicio", "url": "/" },
+          { "texto": "Dependencia", "url": "/dependencia" },
+          { "texto": "Comunicación", "url": "/comunicacion" },
+          { "texto": "Legado", "url": "/legado" },
+          { "texto": "Mejora regulatoria", "url": "/mejora-regulatoria" },
+          { "texto": "Direcciones Generales", "url": "/dgs" },
+          { "texto": "Proyectos", "url": "/proyectos" }
+        ]
+      }
+    },
+    {
+      "ancho": "lg:col-span-3",
+      "contenido": {
+        "titulo": "Sitios relacionados",
+        "tipo": "enlaces",
+        "elementos": [
+          {
+            "texto": "Portal Ciudadano de la Ciudad de México",
+            "url": "https://www.cdmx.gob.mx"
+          },
+          {
+            "texto": "Portal de Transparencia",
+            "url": "https://transparencia.cdmx.gob.mx/"
+          },
+          {
+            "texto": "Trámites y Servicios",
+            "url": "https://www.tramites.cdmx.gob.mx"
+          },
+          {
+            "texto": "Portal de datos de la Ciudad de México",
+            "url": "https://datos.cdmx.gob.mx"
+          },
+          {
+            "texto": "Tianguis Digital",
+            "url": "https://tianguisdigital.cdmx.gob.mx"
+          },
+          {
+            "texto": "Sistema Unificado de Atención Ciudadana",
+            "url": "https://atencionciudadana.cdmx.gob.mx/"
+          },
+          {
+            "texto": "Portal de Transparencia Presupuestaria",
+            "url": "https://tudinero.cdmx.gob.mx/"
+          },
+          {
+            "texto": "Datos Personales del INFOCDMX",
+            "url": "https://www.infocdmx.org.mx/covid19/inicio/"
+          }
+        ]
+      }
+    },
+    {
+      "ancho": "lg:col-span-2",
+      "contenido": {
+        "titulo": "",
+        "tipo": "imagenes",
+        "elementos": [
+          {
+            "url": "https://plazapublica.cdmx.gob.mx/uploads/decidim/attachment/file/363/Plan_Gobierno-2019-2024_2023.pdf",
+            "imagen": "https://adip.cdmx.gob.mx/storage/app/uploads/public/645/40c/943/64540c94306d9001402487.png",
+            "alt": "Programa de Gobierno de la Ciudad de México 2019-2024"
+          },
+          {
+            "url": "https://datos.cdmx.gob.mx/",
+            "imagen": "https://adip.cdmx.gob.mx/storage/app/uploads/public/5cc/0fb/dc3/5cc0fbdc380a8422064764.png",
+            "alt": "Datos abiertos"
+          },
+          {
+            "url": "https://www.tianguisdigital.cdmx.gob.mx/",
+            "imagen": "https://adip.cdmx.gob.mx/storage/app/uploads/public/5dc/9f6/ad5/5dc9f6ad5c494326569373.png",
+            "alt": "Tianguis Digital"
+          }
+        ]
+      }
+    }
+  ],
+  "piePagina": {
+    "version": "Template React v1.0.0 2025",
+    "enlaces": [
+      {
+        "texto": "Términos y Condiciones",
+        "url": "/terminos-y-condiciones"
+      },
+      {
+        "texto": "Política de privacidad",
+        "url": "/terminos-y-condiciones#Datos-personales"
+      },
+      {
+        "texto": "Licencia de Gobierno Abierto CDMX",
+        "url": "http://www.cdmx.gob.mx/lgacdmx"
+      }
+    ]
+  }
+}

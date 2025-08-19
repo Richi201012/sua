@@ -1,0 +1,272 @@
+:root {
+  --primary: rgb(255, 255, 255);
+  --primary-light: rgb(238, 238, 238);
+  --primary-hover: #d6d6d6;
+  --primary-light-hover: rgb(212, 212, 212);
+
+  --secondary: #9f2241;
+  --secondary-dark: #7b1b1b;
+  --secondary-hover: #cd093a;
+
+  --tertiary: #ad895b;
+  --tertiary-light: #c8a67a;
+  --tertiary-hover: #daa054;
+
+  --black: #171616;
+  --white: #ffffff;
+  --black-transparent: rgba(0, 0, 0, 0.389);
+
+  --bg-transparent: #1d1d1d91;
+  --bg-transparent-blur: rgba(255, 255, 255, 0.38);
+}
+
+.bg-primary {
+  background-color: rgb(228, 228, 228);
+}
+
+.bg-secondary {
+  background-color: #ba1b49;
+}
+
+.bg-tertiary {
+  background-color: #bc955c;
+}
+
+/* ===== COLORES DE TEXTO ===== */
+.text-primary {
+  color: rgb(228, 228, 228);
+}
+
+.text-secondary {
+  color: #ba1b49;
+}
+
+.text-tertiary {
+  color: #bc955c;
+}
+
+/* ===== COLORES DE BORDE ===== */
+.border-primary {
+  border-color: rgb(228, 228, 228);
+}
+
+.border-secondary {
+  border-color: #ba1b49;
+}
+
+.border-tertiary {
+  border-color: #bc955c;
+}
+
+/* ===== COLORES DE BORDE ESPECÍFICOS ===== */
+/* Border Top */
+.border-t-primary {
+  border-top-color: rgb(228, 228, 228);
+}
+
+.border-t-secondary {
+  border-top-color: #ba1b49;
+}
+
+.border-t-tertiary {
+  border-top-color: #bc955c;
+}
+
+/* Border Bottom */
+.border-b-primary {
+  border-bottom-color: rgb(228, 228, 228);
+}
+
+.border-b-secondary {
+  border-bottom-color: #ba1b49;
+}
+
+.border-b-tertiary {
+  border-bottom-color: #bc955c;
+}
+
+/* Border Left */
+.border-l-primary {
+  border-left-color: rgb(228, 228, 228);
+}
+
+.border-l-secondary {
+  border-left-color: #ba1b49;
+}
+
+.border-l-tertiary {
+  border-left-color: #bc955c;
+}
+
+/* Border Right */
+.border-r-primary {
+  border-right-color: rgb(228, 228, 228);
+}
+
+.border-r-secondary {
+  border-right-color: #ba1b49;
+}
+
+.border-r-tertiary {
+  border-right-color: #bc955c;
+}
+
+/* ===== COLORES DE OUTLINE ===== */
+.outline-primary {
+  outline-color: rgb(228, 228, 228);
+}
+
+.outline-secondary {
+  outline-color: #ba1b49;
+}
+
+.outline-tertiary {
+  outline-color: #bc955c;
+}
+
+/* ===== COLORES DE RING (FOCUS STATES) ===== */
+.ring-primary {
+  --tw-ring-color: rgb(228, 228, 228);
+}
+
+.ring-secondary {
+  --tw-ring-color: #ba1b49;
+}
+
+.ring-tertiary {
+  --tw-ring-color: #bc955c;
+}
+
+/* ===== COLORES DE SOMBRA ===== */
+.shadow-primary {
+  --tw-shadow-color: rgb(228, 228, 228);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-secondary {
+  --tw-shadow-color: #ba1b49;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-tertiary {
+  --tw-shadow-color: #bc955c;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+/* ===== ESTADOS HOVER ===== */
+.hover\:bg-primary:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+.hover\:bg-secondary:hover {
+  background-color: #ba1b49;
+}
+
+.hover\:bg-tertiary:hover {
+  background-color: #bc955c;
+}
+
+.hover\:text-primary:hover {
+  color: rgb(228, 228, 228);
+}
+
+.hover\:text-secondary:hover {
+  color: #ba1b49;
+}
+
+.hover\:text-tertiary:hover {
+  color: #bc955c;
+}
+
+.hover\:border-primary:hover {
+  border-color: rgb(228, 228, 228);
+}
+
+.hover\:border-secondary:hover {
+  border-color: #ba1b49;
+}
+
+.hover\:border-tertiary:hover {
+  border-color: #bc955c;
+}
+
+/* ===== ESTADOS FOCUS ===== */
+.focus\:bg-primary:focus {
+  background-color: rgb(228, 228, 228);
+}
+
+.focus\:bg-secondary:focus {
+  background-color: #ba1b49;
+}
+
+.focus\:bg-tertiary:focus {
+  background-color: #bc955c;
+}
+
+.focus\:text-primary:focus {
+  color: rgb(228, 228, 228);
+}
+
+.focus\:text-secondary:focus {
+  color: #ba1b49;
+}
+
+.focus\:text-tertiary:focus {
+  color: #bc955c;
+}
+
+.focus\:border-primary:focus {
+  border-color: rgb(228, 228, 228);
+}
+
+.focus\:border-secondary:focus {
+  border-color: #ba1b49;
+}
+
+.focus\:border-tertiary:focus {
+  border-color: #bc955c;
+}
+
+.focus\:ring-primary:focus {
+  --tw-ring-color: rgb(228, 228, 228);
+}
+
+.focus\:ring-secondary:focus {
+  --tw-ring-color: #ba1b49;
+}
+
+.focus\:ring-tertiary:focus {
+  --tw-ring-color: #bc955c;
+}
+
+/* ===== ESTADOS ACTIVE ===== */
+.active\:bg-primary:active {
+  background-color: rgb(228, 228, 228);
+}
+
+.active\:bg-secondary:active {
+  background-color: #ba1b49;
+}
+
+.active\:bg-tertiary:active {
+  background-color: #bc955c;
+}
+
+.active\:text-primary:active {
+  color: rgb(228, 228, 228);
+}
+
+.active\:text-secondary:active {
+  color: #ba1b49;
+}
+
+.active\:text-tertiary:active {
+  color: #bc955c;
+}
+
+/* ===== COLORES CON OPACIDAD ===== */
+
+.bg-transparent {
+  background-color: rgba(0, 0, 0, 0.417);
+  backdrop-filter: blur(4px);
+}

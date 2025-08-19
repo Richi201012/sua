@@ -1,0 +1,160 @@
+{
+  "routes": [
+    {
+      "id": "home",
+      "path": "/",
+      "component": "Home",
+      "name": "Inicio",
+      "showInNav": true,
+      "icon": "home",
+      "meta": {
+        "title": "Inicio - sistema de atención Ciudadana",
+        "description": "Página principal del sistema de atención ciudadana"
+      }
+    },
+    {
+      "id": "login",
+      "path": "/login",
+      "component": "Login",
+      "name": "Iniciar sesión",
+      "showInNav": true,
+      "icon": "login",
+      "meta": {
+        "title": "Iniciar sesión - Sistema de atención ciudadana",
+        "description": "Página de inicio de sesión"
+      }
+    },
+    {
+      "id": "menu-principal",
+      "path": "/menu-principal",
+      "component": "MenuPrincipal",
+      "name": "Menú Principal",
+      "showInNav": true,
+      "icon": "menu",
+      "meta": {
+        "title": "Menú Principal - Sistema de atención ciudadana",
+        "description": "Acceso al menu principal del sistema de atención ciudadana"
+      }
+    },
+    {
+      "id": "solicitud-gira-evento",
+      "path": "/solicitud-gira-evento",
+      "component": "SolicitudGiraEvento",
+      "name": "Solicitud Gira Evento",
+      "showInNav": true,
+      "icon": "event",
+      "meta": {
+        "title": "Solicitud Gira o Evento - Sistema de atención ciudadana",
+        "description": "Formulario para un reporte de gira o evento"
+      }
+    },
+    {
+      "id": "formulario-gira-evento",
+      "path": "/formulario-gira-evento",
+      "component": "FormularioGiraEvento",
+      "name": "Formulario Gira o Evento",
+      "showInNav": false,
+      "icon": "form",
+      "meta": {
+        "title": "Formulario Gira o Evento - Sistema de atención ciudadana",
+        "description": "Formulario para completar detalles de la solicitud de gira o evento"
+      }
+    },
+    {
+      "id":"documento-gira-evento",
+      "path": "/documento-gira-evento",
+      "component": "DocumentoGiraEvento",
+      "name": "Documento Gira Evento",
+      "showInNav": false,
+      "icon": "register",
+      "meta": {
+        "title": "Registro Gira o Evento - Sistema de atención ciudadana",
+        "description": "Página para adjuntar un documento de la solicitud de gira o evento"
+      }
+    },
+    {
+      "id": "registro-gira-evento",
+      "path": "/registro-gira-evento",
+      "component": "RegistroGiraEvento",
+      "name": "Registro Gira Evento",
+      "showInNav": false,
+      "icon": "register",
+      "meta": {
+        "title": "Registro Gira Evento - Sistema de atención ciudadana",
+        "description": "Página para registrar la gira o evento"
+      }
+    },
+    {
+      "id": "solicitud-audiencia-publica",
+      "path": "/solicitud-audiencia-publica",
+      "component": "SolicitudAudienciaPublica",
+      "name": "Solicitud Audiencia Pública",
+      "showInNav": true,
+      "icon": "public-audience",
+      "meta": {
+        "title": "Solicitud Audiencia Pública - Sistema de atención ciudadana",
+        "description": "Formulario para solicitar una audiencia pública"
+      }
+    },
+    {
+      "id": "formulario-audiencia-publica",
+      "path": "/formulario-audiencia-publica",
+      "component": "FormularioAudienciaPublica",
+      "name": "Formulario Audiencia Pública",
+      "showInNav": false,
+      "icon": "form",
+      "meta": {
+        "title": "Formulario Audiencia Pública - Sistema de atención ciudadana",
+        "description": "Formulario para completar detalles de la solicitud de audiencia pública"
+      }
+    },
+    {
+      "id":"documento-audiencia-publica",
+      "path": "/documento-audiencia-publica",
+      "component": "DocumentoAudienciaPublica",
+      "name": "Documento Audiencia Pública",
+      "showInNav": false,
+      "icon": "register",
+      "meta": {
+        "title": "Registro Audiencia Pública - Sistema de atención ciudadana",
+        "description": "Página para adjuntar un documento de la solicitud de audiencia pública"
+      }
+    },
+    {
+      "id": "registro-audiencia-publica",
+      "path": "/registro-audiencia-publica",
+      "component": "RegistroAudienciaPublica",
+      "name": "Registro Audiencia Pública",
+      "showInNav": false,
+      "icon": "register",
+      "meta": {
+        "title": "Registro Audiencia Pública - Sistema de atención ciudadana",
+        "description": "Página para registrar la audiencia pública"
+      }
+    },
+    {
+      "id": "solicitud-gira-evento-flow",
+      "path": "/solicitud-gira-evento-flow",
+      "component": "SolicitudGiraEventoFlow",
+      "name": "Solicitud Gira Evento Flow",
+      "showInNav": false,
+      "icon": "event",
+      "meta": {
+        "title": "Solicitud Gira o Evento Flow - Sistema de atención ciudadana",
+        "description": "Formulario para un reporte de gira o evento con flujo"
+      }
+    },
+    {
+      "id": "solicitud-audiencia-flow",
+      "path": "/solicitud-audiencia-flow",
+      "component": "SolicitudAudienciaPublicaFlow",
+      "name": "Solicitud Audiencia Pública Flow",
+      "showInNav": false,
+      "icon": "public-audience",
+      "meta": {
+        "title": "Solicitud Audiencia Pública Flow - Sistema de atención ciudadana",
+        "description": "Formulario para solicitar una audiencia pública con flujo"
+      }
+    }
+  ]
+}
