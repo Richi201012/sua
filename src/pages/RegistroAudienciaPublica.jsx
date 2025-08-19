@@ -36,7 +36,7 @@ function RegistroAudienciaPublica() {
   }
 
   const handleIrBandeja = () => {
-    navegarConAnimacion('/bandeja')
+    navegarConAnimacion('/bandejaPage')
   }
 
   return (

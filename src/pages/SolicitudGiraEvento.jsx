@@ -101,7 +101,7 @@ function SolicitudGiraEvento({ onNext }) {
                 ¿Estás seguro de cancelar?
               </h3>
               <p className="text-sm text-gray-600 mb-6">
-                Esto borrará el texto escrito.
+                Esto borrara el proceso actual y no podrás recuperarlo.
               </p>
               <div className="flex justify-center gap-4">
                 <button

@@ -176,7 +176,7 @@ function Reporte_Audiencia({ onNext }) {  // 👈 ya no usamos onBack
       {modalType === "cancel" && (
         <Modal
           title="¿Estás seguro?"
-          message="Esto borrará toda la información escrita."
+          message="Esto borrará todo el proceso y no podrá recuperarlo."
           onClose={() => setModalType(null)}
           onConfirm={handleConfirmarCancelar}
           confirmText="Sí, cancelar"

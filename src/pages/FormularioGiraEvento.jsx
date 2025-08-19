@@ -1,7 +1,9 @@
+// FormularioGiraEvento.jsx
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
-function FormularioGiraEvento({ onNext, onBack }) {
+function FormularioGiraEvento({ onNext }) {
   const [form, setForm] = useState({
     nombre: '', apellido1: '', apellido2: '',
     telefono: '', correo: '', telefonoLocal: '', entidad: ''
@@ -10,6 +12,8 @@ function FormularioGiraEvento({ onNext, onBack }) {
   const [modal, setModal] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isExiting, setIsExiting] = useState(false)
+
+  const navigate = useNavigate()
 
   const variants = {
     initial: { opacity: 0, y: 40, scale: 0.9 },
@@ -53,6 +57,11 @@ function FormularioGiraEvento({ onNext, onBack }) {
     telefono: '', correo: '', telefonoLocal: '', entidad: ''
   })
 
+  const handleCancelar = () => {
+    resetForm()
+    navigate('/menu-principal') 
+  }
+
   return (
     <AnimatePresence mode="wait">
       {!isExiting && (
@@ -60,7 +69,7 @@ function FormularioGiraEvento({ onNext, onBack }) {
           {/* Botón regresar */}
           <div className={`w-full max-w-7xl mx-auto px-6 mb-2 ${modal || isLoading ? 'blur-sm pointer-events-none' : ''}`}>
             <button
-              onClick={onBack}
+              onClick={() => navigate('/menu-principal')} // 👈 redirige al menú principal
               className="text-blue-700 font-semibold flex items-center gap-1 hover:underline"
             >
               <span className="text-lg">←</span> Regresar
@@ -73,12 +82,14 @@ function FormularioGiraEvento({ onNext, onBack }) {
               <h2 className="text-3xl font-bold text-center text-gray-800">Solicitud en gira o evento</h2>
             </div>
 
-            {/* Datos solicitante */}
             <div className="space-y-10">
+              {/* Datos solicitante */}
               <section>
                 <h3 className="text-[#9a1c34] text-lg font-bold">Datos del solicitante</h3>
                 <p className="text-sm text-gray-800">Registra los datos del ciudadano</p>
-                <p className="text-sm text-blue-600">Los datos marcados con <span className="text-red-600 font-bold">*</span> son obligatorios</p>
+                <p className="text-sm text-blue-600">
+                  Los datos marcados con <span className="text-red-600 font-bold">*</span> son obligatorios
+                </p>
                 <div className="grid md:grid-cols-3 gap-4 mt-4">
                   {['nombre', 'apellido1', 'apellido2'].map((campo, i) => (
                     <div key={campo}>
@@ -140,20 +151,22 @@ function FormularioGiraEvento({ onNext, onBack }) {
 
               {/* Botones */}
               <div className="flex justify-end gap-4 pt-4">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                   type="button"
                   onClick={() => setModal("cancel")}
                   className="border border-gray-400 text-gray-700 px-4 py-2 rounded hover:bg-gray-100"
                 >
                   Cancelar
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                   type="button"
                   onClick={handleSiguiente}
                   className="bg-[#9a1c34] text-white px-6 py-2 rounded hover:bg-[#7c1228]"
                 >
                   Siguiente
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
@@ -165,13 +178,11 @@ function FormularioGiraEvento({ onNext, onBack }) {
                 <h3 className="text-lg font-semibold mb-4">
                   {modal === "cancel" ? "¿Estás seguro de cancelar?" : "¿Deseas enviar la solicitud?"}
                 </h3>
-                {modal === "cancel" && <p className="text-sm text-gray-600 mb-6">Esto borrará todos los datos capturados.</p>}
+                {modal === "cancel" && <p className="text-sm text-gray-600 mb-6">Esto borrará todo el proceso y no podrá recuperarlo.</p>}
                 <div className="flex justify-center gap-4">
                   <button onClick={() => setModal(null)} className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">No</button>
                   <button
-                    onClick={modal === "cancel"
-                      ? () => { resetForm(); setModal(null); if (onBack) onBack(); }
-                      : confirmarEnvio}
+                    onClick={modal === "cancel" ? handleCancelar : confirmarEnvio}
                     className="px-4 py-2 rounded bg-[#9a1c34] text-white hover:bg-[#7c1228]"
                   >
                     Sí, {modal === "cancel" ? "cancelar" : "enviar"}
@@ -195,6 +206,3 @@ function FormularioGiraEvento({ onNext, onBack }) {
 }
 
 export default FormularioGiraEvento
-
-
-

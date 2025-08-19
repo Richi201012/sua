@@ -155,6 +155,19 @@
         "title": "Solicitud Audiencia Pública Flow - Sistema de atención ciudadana",
         "description": "Formulario para solicitar una audiencia pública con flujo"
       }
+    },
+
+    {
+      "id": "bandeja-page",
+      "path": "/bandejaPage",
+      "component": "BandejaPage",
+      "name": "Bandeja de Entrada",
+      "showInNav": true,
+      "icon": "inbox",
+      "meta": {
+        "title": "Bandeja de Entrada - Sistema de atención ciudadana",
+        "description": "Página para gestionar la bandeja de entrada"
+      }
     }
   ]
 }

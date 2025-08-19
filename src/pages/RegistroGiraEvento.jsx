@@ -36,7 +36,7 @@ function RegistroGiraEvento() {
   }
 
   const handleIrBandeja = () => {
-    navegarConAnimacion('/bandeja')
+    navegarConAnimacion('/bandejaPage')
   }
 
   return (
