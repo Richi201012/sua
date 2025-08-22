@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// ❌ Quitamos: import Layout from "../components/layout/Layout";
 
 import { FunnelIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
@@ -55,8 +56,7 @@ function BandejaPage() {
   const ultimoFolio = localStorage.getItem("ultimoFolio");
 
   return (
-    <Layout>
-      {/* 👇 quitamos NavBar, Layout ya lo maneja */}
+    <div>
       <main className="min-h-screen bg-gray-100 flex flex-col items-center font-sans">
         <div className="w-full max-w-7xl p-4 md:p-6 mt-6 mb-6">
           {/* 🔹 Botones superiores */}
@@ -80,7 +80,9 @@ function BandejaPage() {
           <section className="bg-white border border-gray-200 rounded-lg p-6 shadow-md mb-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
               <div className="flex flex-col">
-                <label className="text-xs font-medium text-gray-700 mb-1">Folio</label>
+                <label className="text-xs font-medium text-gray-700 mb-1">
+                  Folio
+                </label>
                 <input
                   type="text"
                   placeholder="Ingresa el folio"
@@ -92,7 +94,9 @@ function BandejaPage() {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-xs font-medium text-gray-700 mb-1">Nombre del solicitante</label>
+                <label className="text-xs font-medium text-gray-700 mb-1">
+                  Nombre del solicitante
+                </label>
                 <input
                   type="text"
                   placeholder="Nombre del solicitante"
@@ -104,7 +108,9 @@ function BandejaPage() {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-xs font-medium text-gray-700 mb-1">Procedencia</label>
+                <label className="text-xs font-medium text-gray-700 mb-1">
+                  Procedencia
+                </label>
                 <select
                   name="procedencia"
                   value={filtros.procedencia}
@@ -118,7 +124,9 @@ function BandejaPage() {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-xs font-medium text-gray-700 mb-1">Estatus</label>
+                <label className="text-xs font-medium text-gray-700 mb-1">
+                  Estatus
+                </label>
                 <select
                   name="estatus"
                   value={filtros.estatus}
@@ -171,27 +179,56 @@ function BandejaPage() {
               <table className="w-full text-xs sm:text-sm text-left border border-gray-300 border-collapse">
                 <thead className="bg-[#9a1c34] text-white">
                   <tr>
-                    <th className="px-2 sm:px-4 py-2 border border-gray-300">Folio</th>
-                    <th className="px-2 sm:px-4 py-2 border border-gray-300">Nombre</th>
-                    <th className="px-2 sm:px-4 py-2 border border-gray-300">Procedencia</th>
-                    <th className="px-2 sm:px-4 py-2 border border-gray-300">Estatus</th>
-                    <th className="px-2 sm:px-4 py-2 border border-gray-300">Folio de cédula</th>
-                    <th className="px-2 sm:px-4 py-2 border border-gray-300">Capturista</th>
-                    <th className="px-2 sm:px-4 py-2 border border-gray-300">Acciones</th>
+                    <th className="px-2 sm:px-4 py-2 border border-gray-300">
+                      Folio
+                    </th>
+                    <th className="px-2 sm:px-4 py-2 border border-gray-300">
+                      Nombre
+                    </th>
+                    <th className="px-2 sm:px-4 py-2 border border-gray-300">
+                      Procedencia
+                    </th>
+                    <th className="px-2 sm:px-4 py-2 border border-gray-300">
+                      Estatus
+                    </th>
+                    <th className="px-2 sm:px-4 py-2 border border-gray-300">
+                      Folio de cédula
+                    </th>
+                    <th className="px-2 sm:px-4 py-2 border border-gray-300">
+                      Capturista
+                    </th>
+                    <th className="px-2 sm:px-4 py-2 border border-gray-300">
+                      Acciones
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.length > 0 ? (
                     data.map((row, index) => (
-                      <tr key={index} className="hover:bg-gray-50 transition-colors">
+                      <tr
+                        key={index}
+                        className="hover:bg-gray-50 transition-colors"
+                      >
                         <td className="px-2 sm:px-4 py-2 border border-gray-300">
-                          {row.folio && row.folio !== "-" ? row.folio : ultimoFolio || "-"}
+                          {row.folio && row.folio !== "-"
+                            ? row.folio
+                            : ultimoFolio || "-"}
                         </td>
-                        <td className="px-2 sm:px-4 py-2 border border-gray-300">{row.nombre || "-"}</td>
-                        <td className="px-2 sm:px-4 py-2 border border-gray-300">{row.procedencia || "-"}</td>
-                        <td className="px-2 sm:px-4 py-2 border border-gray-300">{row.estatus || "-"}</td>
-                        <td className="px-2 sm:px-4 py-2 border border-gray-300">{row.folioCedula || "-"}</td>
-                        <td className="px-2 sm:px-4 py-2 border border-gray-300">{row.capturista || "-"}</td>
+                        <td className="px-2 sm:px-4 py-2 border border-gray-300">
+                          {row.nombre || "-"}
+                        </td>
+                        <td className="px-2 sm:px-4 py-2 border border-gray-300">
+                          {row.procedencia || "-"}
+                        </td>
+                        <td className="px-2 sm:px-4 py-2 border border-gray-300">
+                          {row.estatus || "-"}
+                        </td>
+                        <td className="px-2 sm:px-4 py-2 border border-gray-300">
+                          {row.folioCedula || "-"}
+                        </td>
+                        <td className="px-2 sm:px-4 py-2 border border-gray-300">
+                          {row.capturista || "-"}
+                        </td>
                         <td className="px-2 sm:px-4 py-2 border border-gray-300 text-center flex justify-center gap-2 sm:gap-3">
                           <button
                             onClick={() =>
@@ -214,7 +251,10 @@ function BandejaPage() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="7" className="text-center py-6 text-gray-500 italic">
+                      <td
+                        colSpan="7"
+                        className="text-center py-6 text-gray-500 italic"
+                      >
                         No hay solicitudes registradas
                       </td>
                     </tr>
@@ -225,11 +265,12 @@ function BandejaPage() {
           </section>
         </div>
       </main>
-    </Layout>
+    </div>
   );
 }
 
 export default BandejaPage;
+
 
 
 

@@ -105,7 +105,7 @@ function MenuPrincipal2() {
 
                 <button
                   onClick={() =>
-                    handleNavigate('/bandeja-entrada', 'Bandeja de entrada')
+                    handleNavigate('/bandejaPage2', 'Bandeja de entrada')
                   }
                   className="w-full bg-white py-6 px-8 rounded-lg shadow text-[#991C3E] border border-[#991C3E] hover:shadow-md flex items-center space-x-6"
                 >
