@@ -1,4 +1,3 @@
-// FormularioGiraEvento.jsx
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
@@ -37,20 +36,42 @@ function FormularioGiraEvento({ onNext }) {
   }
 
   const confirmarEnvio = () => {
-    setModal(null)
-    setIsLoading(true)
+  setModal(null)
+  setIsLoading(true)
 
-    localStorage.setItem('solicitudDraft', JSON.stringify({
-      nombre: `${form.nombre} ${form.apellido1}`.trim(),
-      alcaldia: form.entidad,
-      tipo: 'Trámite'
-    }))
+ 
+  const capturistas = [
+    "Alicia Martínez", "Ricardo Hernández", "Juana López", 
+    "Juan Pérez", "Carlos Ramírez", "Fernanda Torres"
+  ]
+  const capturistaAleatorio = capturistas[Math.floor(Math.random() * capturistas.length)]
 
-    setTimeout(() => {
-      setIsLoading(false)
-      if (onNext) onNext()
-    }, 2000)
+
+  const folioCedula = "CED-" + Date.now() + "-" + Math.floor(Math.random() * 1000)
+
+
+  const estatusOpciones = ["En captura", "En proceso", "Capturado"]
+  const estatusAleatorio = estatusOpciones[Math.floor(Math.random() * estatusOpciones.length)]
+
+
+  const draft = {
+    nombre: `${form.nombre} ${form.apellido1} ${form.apellido2}`.trim(),
+    telefono: form.telefono,
+    correo: form.correo,
+    alcaldia: form.entidad,
+    procedencia: "Gira o Evento",    
+    estatus: estatusAleatorio,       
+    folioCedula: folioCedula,        
+    capturista: capturistaAleatorio  
   }
+
+  localStorage.setItem("solicitudDraft", JSON.stringify(draft))
+
+  setTimeout(() => {
+    setIsLoading(false)
+    if (onNext) onNext()
+  }, 2000)
+}
 
   const resetForm = () => setForm({
     nombre: '', apellido1: '', apellido2: '',
@@ -66,24 +87,23 @@ function FormularioGiraEvento({ onNext }) {
     <AnimatePresence mode="wait">
       {!isExiting && (
         <motion.section initial="initial" animate="animate" exit="exit" variants={variants} key="formulario">
-          {/* Botón regresar */}
+     
           <div className={`w-full max-w-7xl mx-auto px-6 mb-2 ${modal || isLoading ? 'blur-sm pointer-events-none' : ''}`}>
             <button
-              onClick={() => navigate('/menu-principal')} // 👈 redirige al menú principal
+              onClick={() => navigate('/menu-principal')}
               className="text-blue-700 font-semibold flex items-center gap-1 hover:underline"
             >
               <span className="text-lg">←</span> Regresar
             </button>
           </div>
 
-          {/* Formulario */}
           <div className="bg-white w-full px-5 py-7 mt-2 shadow rounded-lg max-w-7xl mx-auto">
             <div className="bg-gray-200 p-4 mb-6 rounded-t-lg">
               <h2 className="text-3xl font-bold text-center text-gray-800">Solicitud en gira o evento</h2>
             </div>
 
             <div className="space-y-10">
-              {/* Datos solicitante */}
+              
               <section>
                 <h3 className="text-[#9a1c34] text-lg font-bold">Datos del solicitante</h3>
                 <p className="text-sm text-gray-800">Registra los datos del ciudadano</p>
@@ -109,7 +129,7 @@ function FormularioGiraEvento({ onNext }) {
                 </div>
               </section>
 
-              {/* Medios de contacto */}
+          
               <section>
                 <h3 className="text-[#9a1c34] text-lg font-bold">Medios de contacto</h3>
                 <p className="text-sm text-gray-800">Registra por lo menos un medio de contacto</p>
@@ -206,3 +226,5 @@ function FormularioGiraEvento({ onNext }) {
 }
 
 export default FormularioGiraEvento
+
+

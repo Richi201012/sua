@@ -31,12 +31,12 @@ const SolicitudAudienciaPublicaFlow = () => {
     }
   };
 
-  // 🔒 índice del tab actual
+  
   const activeIndex = tabs.findIndex((t) => t.id === activeTab);
 
   return (
     <SimpleLayout>
-      {/* 🔹 Header con tabs: solo se muestran desde el actual hacia adelante */}
+
       <div className="w-full bg-white border-b mb-6">
         <div className="flex flex-wrap justify-center items-center max-w-6xl mx-auto px-4">
           {tabs.slice(activeIndex).map((tab, index) => (
@@ -65,7 +65,7 @@ const SolicitudAudienciaPublicaFlow = () => {
         </div>
       </div>
 
-      {/* 🔹 Contenido de cada paso */}
+   
       <div className="card shadow-lg p-8 rounded-2xl max-w-6xl mx-auto">
         {activeTab === "solicitud" && (
           <SolicitudAudienciaPublica

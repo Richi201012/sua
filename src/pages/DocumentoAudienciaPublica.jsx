@@ -9,7 +9,7 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
   const [showConfirmFinish, setShowConfirmFinish] = useState(false)
   const [showCancelModal, setShowCancelModal] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false) // ✅ animación
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const navigate = useNavigate()
 
@@ -50,27 +50,24 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
     setShowConfirmFinish(false)
     setIsSaving(true)
 
-    const draft = JSON.parse(localStorage.getItem('solicitudDraft') || '{}')
-    const nuevo = {
-      folio: 'AC-' + Math.floor(Math.random() * 999999).toString().padStart(6, '0'),
+    
+    const nuevaSolicitud = {
       fecha: new Date().toISOString(),
-      nombre: draft.nombre || '—',
-      alcaldia: draft.alcaldia || '—',
-      tipo: draft.tipo || 'Audiencia',
+      nombre: '—',
+      alcaldia: '—',
+      tipo: 'Audiencia',
       status: 'NUEVO'
     }
-    const prev = JSON.parse(localStorage.getItem('solicitudes') || '[]')
-    localStorage.setItem('solicitudes', JSON.stringify([nuevo, ...prev]))
-    localStorage.removeItem('solicitudDraft')
 
-    // Simulamos "guardando"
+    console.log("Solicitud creada (simulada):", nuevaSolicitud)
+
     setTimeout(() => {
       setIsSaving(false)
-      setShowSuccess(true) // ✅ mostramos animación
+      setShowSuccess(true)
 
       setTimeout(() => {
         setShowSuccess(false)
-        if (onNext) onNext() // ✅ respeta el flow del Stepper
+        if (onNext) onNext()
       }, 2000)
     }, 2000)
   }
@@ -94,7 +91,7 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
           variants={variants}
           key="documento-audiencia-publica"
         >
-          {/* Botón regresar */}
+        
           <div className="w-full mb-4">
             <button
               onClick={handleRegresar}
@@ -129,7 +126,6 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
               </ul>
             </div>
 
-            {/* Texto a la izquierda / Botón a la derecha */}
             <div className="border border-gray-300 rounded p-4 flex items-center justify-between">
               <span className="font-semibold">Documento de solicitud</span>
               <div className="flex items-center gap-2">
@@ -202,7 +198,7 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
           </div>
         </motion.div>
 
-        {/* ✅ Modal Error */}
+      
         {showErrorModal && (
           <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
@@ -220,7 +216,7 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
           </div>
         )}
 
-        {/* ✅ Modal Confirmar Finalizar */}
+        
         {showConfirmFinish && (
           <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
@@ -246,7 +242,7 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
           </div>
         )}
 
-        {/* ✅ Modal Confirmar Cancelar */}
+      
         {showCancelModal && (
           <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
@@ -272,34 +268,36 @@ function DocumentoAudienciaPublica({ onNext, onBack }) {
           </div>
         )}
 
-        {/* 🎉 Animación Documento Gira Evento */}
+       
         {showSuccess && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
-    <motion.div
-      initial={{ scale: 0.5, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.5, opacity: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="bg-white p-10 rounded-full shadow-lg flex flex-col items-center justify-center"
-    >
-      {/* Círculo animado */}
-      <motion.div
-        className="w-16 h-16 border-4 border-[#9a1c34] border-t-transparent rounded-full animate-spin"
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-      />
-      <h3 className="text-lg font-semibold mt-4 text-gray-800">
-        Registro guardado
-      </h3>
-      <p className="text-sm text-gray-600 mt-1">
-        Tu solicitud fue registrada correctamente.
-      </p>
-    </motion.div>
-  </div>
-)}
+          <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="bg-white p-10 rounded-full shadow-lg flex flex-col items-center justify-center"
+            >
+              <motion.div
+                className="w-16 h-16 border-4 border-[#9a1c34] border-t-transparent rounded-full animate-spin"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              />
+              <h3 className="text-lg font-semibold mt-4 text-gray-800">
+                Registro guardado
+              </h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Tu solicitud fue registrada correctamente.
+              </p>
+            </motion.div>
+          </div>
+        )}
       </section>
     </AnimatePresence>
   )
 }
 
 export default DocumentoAudienciaPublica
+
+
+

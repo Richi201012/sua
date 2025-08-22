@@ -30,14 +30,14 @@ function SolicitudGiraEvento({ onNext }) {
         key="solicitud"
       >
         <div className="bg-gray w-full px-10 py-12 shadow-lg rounded-lg max-w-7xl mx-auto">
-          {/* Encabezado */}
+         
           <div className="bg-gray-100 p-6 rounded-t-lg mb-8">
             <h2 className="text-3xl font-bold text-center text-gray-700">
               Solicitud en gira o evento
             </h2>
           </div>
 
-          {/* Texto de apoyo */}
+         
           <div className="mb-6">
             <p className="text-[#9a1c34] font-bold text-xl mb-2">
               ¿Qué quieres reportar o solicitar?
@@ -48,7 +48,7 @@ function SolicitudGiraEvento({ onNext }) {
             </p>
           </div>
 
-          {/* Textarea con contador */}
+        
           <div className="relative mb-10">
             <textarea
               placeholder="Describe el tema que el ciudadano quiere tratar o reportar"
@@ -69,7 +69,7 @@ function SolicitudGiraEvento({ onNext }) {
               {caracteresRestantes}/500
             </div>
           </div>
-{/* Botones */}
+
 <div className="flex flex-col sm:flex-row justify-end gap-4 pt-6">
   <button
     onClick={() => setShowConfirmCancel(true)}
@@ -87,7 +87,7 @@ function SolicitudGiraEvento({ onNext }) {
 
         </div>
 
-        {/* Modal Confirmación Cancelar */}
+
         {showConfirmCancel && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30"

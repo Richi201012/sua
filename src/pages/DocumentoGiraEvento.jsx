@@ -1,88 +1,125 @@
-// DocumentoGiraEvento.jsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom"; // 👈 Importar navegación
 
 function DocumentoGiraEvento({ onNext, onBack }) {
-  const [archivo, setArchivo] = useState(null)
-  const [isLoadingPdf, setIsLoadingPdf] = useState(false)
-  const [showErrorModal, setShowErrorModal] = useState(false)
-  const [showConfirmFinish, setShowConfirmFinish] = useState(false)
-  const [showCancelModal, setShowCancelModal] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false) // ✅ animación
+  const [archivo, setArchivo] = useState(null);
+  const [isLoadingPdf, setIsLoadingPdf] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showConfirmFinish, setShowConfirmFinish] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false); // ✅ animación
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const variants = {
     initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: 'easeOut' } },
-    exit: { opacity: 0, scale: 1.2, transition: { duration: 0.5, ease: 'easeIn' } }
-  }
+    animate: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: "easeOut" } },
+    exit: { opacity: 0, scale: 1.2, transition: { duration: 0.5, ease: "easeIn" } },
+  };
 
   const handleArchivo = (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    if (file.type !== 'application/pdf') {
-      setArchivo(null)
-      setShowErrorModal(true)
-      return
+    if (file.type !== "application/pdf") {
+      setArchivo(null);
+      setShowErrorModal(true);
+      return;
     }
 
-    setIsLoadingPdf(true)
-    setArchivo(null)
+    setIsLoadingPdf(true);
+    setArchivo(null);
 
     setTimeout(() => {
-      setArchivo(file)
-      setIsLoadingPdf(false)
-    }, 2000)
-  }
+      setArchivo(file);
+      setIsLoadingPdf(false);
+
+    
+      const draft = JSON.parse(localStorage.getItem("solicitudDraft") || "{}");
+      const nuevoDraft = {
+        ...draft,
+        documento: file.name,
+      };
+      localStorage.setItem("solicitudDraft", JSON.stringify(nuevoDraft));
+    }, 2000);
+  };
+
+
+  const generarFolioCedula = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    for (let i = 0; i < 7; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
 
   const handleClickFinalizar = () => {
     if (!archivo) {
-      setShowErrorModal(true)
-      return
+      setShowErrorModal(true);
+      return;
     }
-    setShowConfirmFinish(true)
-  }
+    setShowConfirmFinish(true);
+  };
 
   const handleFinalizar = () => {
-    setShowConfirmFinish(false)
-    setIsSaving(true)
+    setShowConfirmFinish(false);
+    setIsSaving(true);
 
-    const draft = JSON.parse(localStorage.getItem('solicitudDraft') || '{}')
+   
+    const draft = JSON.parse(localStorage.getItem("solicitudDraft") || "{}");
+
+    
+    const folioSolicitud = `DAAC-GE-${new Date()
+      .toISOString()
+      .split("T")[0]
+      .replace(/-/g, "")}_${String(
+      Math.floor(1 + Math.random() * 999999)
+    ).padStart(6, "0")}`;
+
+    
+    const folioCedula = generarFolioCedula();
+
     const nuevo = {
-      folio: 'AC-' + Math.floor(Math.random() * 999999).toString().padStart(6, '0'),
+      ...draft,
+      folio: folioSolicitud,     
       fecha: new Date().toISOString(),
-      nombre: draft.nombre || '—',
-      alcaldia: draft.alcaldia || '—',
-      tipo: draft.tipo || 'Audiencia',
-      status: 'NUEVO'
-    }
-    const prev = JSON.parse(localStorage.getItem('solicitudes') || '[]')
-    localStorage.setItem('solicitudes', JSON.stringify([nuevo, ...prev]))
-    localStorage.removeItem('solicitudDraft')
+      estatus: "En proceso",       
+      procedencia: "Gira o Evento", 
+      capturista: ["Juan Pérez", "María López", "Carlos Gómez", "Ana Torres"][Math.floor(Math.random() * 4)] 
+    };
 
-    // Simulamos "guardando"
+ 
+    const prev = JSON.parse(localStorage.getItem("solicitudes") || "[]");
+    localStorage.setItem("solicitudes", JSON.stringify([nuevo, ...prev]));
+
+   
+    localStorage.setItem("folioGenerado", folioSolicitud);
+
+    
+    localStorage.removeItem("solicitudDraft");
+
+    
     setTimeout(() => {
-      setIsSaving(false)
-      setShowSuccess(true) // ✅ mostramos animación
+      setIsSaving(false);
+      setShowSuccess(true);
 
       setTimeout(() => {
-        setShowSuccess(false)
-        if (onNext) onNext() // ✅ respeta el flow del Stepper
-      }, 2000)
-    }, 2000)
-  }
+        setShowSuccess(false);
+        if (onNext) onNext(); 
+      }, 2000);
+    }, 2000);
+  };
 
   const handleCancelar = () => {
-    setShowCancelModal(true)
-  }
+    setShowCancelModal(true);
+  };
 
   const handleRegresar = () => {
-    if (onBack) onBack()
-  }
+    if (onBack) onBack();
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -93,9 +130,9 @@ function DocumentoGiraEvento({ onNext, onBack }) {
           animate="animate"
           exit="exit"
           variants={variants}
-          key="documento-audiencia-publica"
+          key="documento-gira-evento"
         >
-          {/* Botón regresar */}
+        
           <div className="w-full mb-4">
             <button
               onClick={handleRegresar}
@@ -130,14 +167,14 @@ function DocumentoGiraEvento({ onNext, onBack }) {
               </ul>
             </div>
 
-            {/* Texto a la izquierda / Botón a la derecha */}
+    
             <div className="border border-gray-300 rounded p-4 flex items-center justify-between">
               <span className="font-semibold">Documento de solicitud</span>
               <div className="flex items-center gap-2">
                 <label
                   htmlFor="fileUpload"
                   className={`bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded cursor-pointer flex items-center gap-1 ${
-                    isSaving || isLoadingPdf ? 'pointer-events-none opacity-50' : ''
+                    isSaving || isLoadingPdf ? "pointer-events-none opacity-50" : ""
                   }`}
                 >
                   <span>📤</span> Cargar
@@ -263,7 +300,7 @@ function DocumentoGiraEvento({ onNext, onBack }) {
                   No
                 </button>
                 <button
-                  onClick={() => navigate('/menu-principal')}
+                  onClick={() => navigate("/menu-principal")}
                   className="px-4 py-2 bg-[#9a1c34] text-white rounded hover:bg-[#801329]"
                 >
                   Sí, cancelar
@@ -275,32 +312,34 @@ function DocumentoGiraEvento({ onNext, onBack }) {
 
         {/* 🎉 Animación Documento Gira Evento */}
         {showSuccess && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
-    <motion.div
-      initial={{ scale: 0.5, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.5, opacity: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="bg-white p-10 rounded-full shadow-lg flex flex-col items-center justify-center"
-    >
-      {/* Círculo animado */}
-      <motion.div
-        className="w-16 h-16 border-4 border-[#9a1c34] border-t-transparent rounded-full animate-spin"
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-      />
-      <h3 className="text-lg font-semibold mt-4 text-gray-800">
-        Registro guardado
-      </h3>
-      <p className="text-sm text-gray-600 mt-1">
-        Tu solicitud fue registrada correctamente.
-      </p>
-    </motion.div>
-  </div>
-)}
+          <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="bg-white p-10 rounded-full shadow-lg flex flex-col items-center justify-center"
+            >
+              <motion.div
+                className="w-16 h-16 border-4 border-[#9a1c34] border-t-transparent rounded-full animate-spin"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              />
+              <h3 className="text-lg font-semibold mt-4 text-gray-800">Registro guardado</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Tu solicitud fue registrada correctamente.
+              </p>
+            </motion.div>
+          </div>
+        )}
       </section>
     </AnimatePresence>
-  )
+  );
 }
 
-export default DocumentoGiraEvento 
+export default DocumentoGiraEvento;
+
+
+
+
+

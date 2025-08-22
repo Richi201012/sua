@@ -8,7 +8,7 @@ import RegistroGiraEvento from "./RegistroGiraEvento";
 
 const SolicitudGiraEventoFlow = () => {
   const [activeTab, setActiveTab] = useState("solicitud");
-  const [completedSteps, setCompletedSteps] = useState(["solicitud"]); // 🔒 control de desbloqueo
+  const [completedSteps, setCompletedSteps] = useState(["solicitud"]); 
 
   const tabs = [
     { id: "solicitud", label: "Solicitud" },
@@ -17,7 +17,6 @@ const SolicitudGiraEventoFlow = () => {
     { id: "registro", label: "Registro" },
   ];
 
-  // ✅ marcar como completado y pasar al siguiente
   const goToNextStep = (current) => {
     const currentIndex = tabs.findIndex((t) => t.id === current);
     const nextStep = tabs[currentIndex + 1]?.id;
@@ -29,7 +28,6 @@ const SolicitudGiraEventoFlow = () => {
     }
   };
 
-  // ✅ regresar al paso anterior
   const goToPrevStep = (current) => {
     const currentIndex = tabs.findIndex((t) => t.id === current);
     const prevStep = tabs[currentIndex - 1]?.id;
@@ -38,12 +36,14 @@ const SolicitudGiraEventoFlow = () => {
     }
   };
 
+  const activeIndex = tabs.findIndex((t) => t.id === activeTab);
+
   return (
     <SimpleLayout>
-      {/* 🔹 Header de pasos con progreso */}
+  
       <div className="w-full bg-white border-b mb-6">
-        <div className="flex flex-wrap justify-center items-center max-w-6xl mx-auto px-4">
-          {tabs.map((tab, index) => {
+        <div className="flex flex-wrap justify-center items-center max-w-6xl mx-auto px-4 transition-all duration-500">
+          {tabs.slice(activeIndex).map((tab, index) => {
             const isUnlocked = completedSteps.includes(tab.id);
             return (
               <div
@@ -65,8 +65,8 @@ const SolicitudGiraEventoFlow = () => {
                   {tab.label}
                 </button>
 
-                {/* 🔹 Línea separadora */}
-                {index < tabs.length - 1 && (
+             
+                {index < tabs.slice(activeIndex).length - 1 && (
                   <div className="hidden sm:block w-8 h-[2px] bg-gray-300 mx-2"></div>
                 )}
               </div>
@@ -75,8 +75,8 @@ const SolicitudGiraEventoFlow = () => {
         </div>
       </div>
 
-      {/* 🔹 Contenido de los formularios */}
-      <div className="card shadow-lg p-8 rounded-2xl max-w-6xl mx-auto">
+     
+      <div className="card shadow-lg p-8 rounded-2xl max-w-6xl mx-auto transition-opacity duration-500">
         {activeTab === "solicitud" && (
           <SolicitudGiraEvento
             onNext={() => goToNextStep("solicitud")}
@@ -86,7 +86,7 @@ const SolicitudGiraEventoFlow = () => {
         {activeTab === "formulario" && (
           <FormularioGiraEvento
             onNext={() => goToNextStep("formulario")}
-            onBack={() => goToPrevStep("formulario")}
+            onBack={() => goToPrevStep("formulario")} 
           />
         )}
         {activeTab === "documento" && (
@@ -96,7 +96,8 @@ const SolicitudGiraEventoFlow = () => {
           />
         )}
         {activeTab === "registro" && (
-          <RegistroGiraEvento onBack={() => goToPrevStep("registro")} />
+          <RegistroGiraEvento onBack={() => goToPrevStep("registro")} /> 
+          
         )}
       </div>
     </SimpleLayout>

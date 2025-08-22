@@ -1,29 +1,40 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import check from '../assets/check.png'
 
 function RegistroAudienciaPublica() {
-  const [folio, setFolio] = useState('')
   const [isExiting, setIsExiting] = useState(false)
   const [nextRoute, setNextRoute] = useState(null)
+  const [folio, setFolio] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
-    const generateFolio = () => {
-      const date = new Date()
-      const dateStr = date.toISOString().split('T')[0].replace(/-/g, '') // YYYYMMDD
-      const random = String(Math.floor(1 + Math.random() * 999999)).padStart(6, '0')
-      return `DAAC-GE-${dateStr}_${random}`
-    }
+    //  Recuperar folio de la última solicitud (guardado explícitamente)
+    const ultimoFolio = localStorage.getItem('ultimoFolio')
 
-    setFolio(generateFolio())
+    if (ultimoFolio) {
+      setFolio(ultimoFolio)
+    } else {
+      // fallback: buscar en solicitudes
+      const stored = JSON.parse(localStorage.getItem('solicitudes')) || []
+      const ultimaSolicitud = stored[stored.length - 1]
+      if (ultimaSolicitud) setFolio(ultimaSolicitud.folio)
+    }
   }, [])
 
   const variants = {
     initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
-    exit: { opacity: 0, scale: 0.8, transition: { duration: 0.5, ease: 'easeIn' } }
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: 'easeOut' }
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.5, ease: 'easeIn' }
+    }
   }
 
   const navegarConAnimacion = (ruta) => {
@@ -62,12 +73,12 @@ function RegistroAudienciaPublica() {
               Registro exitoso
             </div>
 
-            {/* Contenido principal */}
+           
             <div className="mt-10 flex flex-col md:flex-row items-center justify-between">
               <p className="text-xl md:text-4xl font-semibold text-gray-700 leading-relaxed text-left">
                 La solicitud con el{' '}
                 <span className="text-blue-600 font-bold">
-                  FOLIO {folio}
+                  FOLIO {folio || '—'}
                 </span>{' '}
                 se realizó exitosamente
               </p>
@@ -90,7 +101,7 @@ function RegistroAudienciaPublica() {
                 onClick={handleCapturarNuevo}
                 className="border border-[#9a1c34] text-[#9a1c34] px-4 py-2 rounded hover:bg-red-50"
               >
-                Capturar nuevo folio
+                Capturar nuevo registro
               </button>
               <button
                 onClick={handleIrBandeja}
@@ -107,5 +118,16 @@ function RegistroAudienciaPublica() {
 }
 
 export default RegistroAudienciaPublica
+
+
+
+
+
+
+
+
+
+
+
 
 

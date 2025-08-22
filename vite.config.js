@@ -10,7 +10,7 @@ export default defineConfig({
   ],
   server: {
     allowedHosts: [
-      'r4wcid-ip-201-148-79-113.tunnelmole.net/' // ✅ solo el dominio
+      '.tunnelmole.net' // ✅ acepta cualquier subdominio de tunnelmole
     ]
   }
 })

@@ -12,9 +12,15 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
     alcaldia: "",
     colonia: "",
     telefono: "",
+    telefonoLocal: "",
     correo: "",
     nombre: "",
     apellido1: "",
+    apellido2: "",
+    curp: "",
+    calle: "",
+    numExt: "",
+    numInt: "",
     folio: "",
   });
 
@@ -24,8 +30,41 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
   const [modalType, setModalType] = useState(null); // "cancel" | "submit" | null
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const inputBase = "w-full border px-3 py-2 text-sm rounded-md transition-all duration-300 focus:ring-2 focus:ring-[#9a1c34]";
+  const inputBase =
+    "w-full border px-3 py-2 text-sm rounded-md transition-all duration-300 focus:ring-2 focus:ring-[#9a1c34]";
   const errorClass = "border-red-500 ring-1 ring-red-500";
+
+  // ⭐ Función para generar estatus aleatorio
+  const generarEstatus = () => {
+    const estatusPosibles = [
+      "En revisión",
+      "Turnado",
+      "Concluido",
+      "Pendiente",
+      "Rechazado",
+    ];
+    return estatusPosibles[Math.floor(Math.random() * estatusPosibles.length)];
+  };
+
+  // ⭐ Función para generar folio de cédula aleatorio (7 caracteres)
+  const generarFolioCedula = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    for (let i = 0; i < 7; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+
+  // ⭐ Función para generar el folio principal (oculto)
+  const generarFolioPrincipal = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "AUD-";
+    for (let i = 0; i < 6; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +83,8 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.correo)
     )
       newErrors.correo = true;
-    if (!formData.folio) newErrors.folio = true;
+
+    // 🔹 YA NO validamos "folioPrincipal", se genera automático
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -54,23 +94,53 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
   };
 
   const confirmSubmit = async () => {
+    if (isSubmitting) return; // ✅ Evita registros dobles
     setModalType(null);
     setIsSubmitting(true);
 
     // Simula guardado
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    localStorage.setItem(
-      "solicitudDraft",
-      JSON.stringify({
-        nombre: `${formData.nombre} ${formData.apellido1 || ""}`.trim(),
-        alcaldia: formData.alcaldia || "",
-        tipo: "Audiencia",
-      })
+    // ✅ Generamos aquí el folio principal y lo guardamos en localStorage
+    const folioPrincipal = generarFolioPrincipal();
+    localStorage.setItem("folioPrincipal", folioPrincipal);
+
+    const nuevaSolicitud = {
+      nombre: `${formData.nombre} ${formData.apellido1 || ""} ${
+        formData.apellido2 || ""
+      }`.trim(),
+      curp: formData.curp,
+      calle: formData.calle,
+      numExt: formData.numExt,
+      numInt: formData.numInt,
+      alcaldia: formData.alcaldia || "",
+      colonia: formData.colonia || "",
+      telefono: formData.telefono,
+      telefonoLocal: formData.telefonoLocal,
+      correo: formData.correo,
+      procedencia: "Audiencia Pública",
+      estatus: generarEstatus(),
+      folioCedula: generarFolioCedula(),
+      folio: formData.folio || "", // folio de cédula opcional ingresado
+      folioPrincipal, // 🔹 agregado el folio principal
+      fecha: new Date().toLocaleDateString("es-MX"),
+      capturista: "Sistema SAC",
+    };
+
+    const solicitudes = JSON.parse(localStorage.getItem("solicitudes")) || [];
+
+    // ✅ Revisión: evitar duplicados por folioPrincipal
+    const yaExiste = solicitudes.some(
+      (s) => s.folioPrincipal === nuevaSolicitud.folioPrincipal
     );
 
+    if (!yaExiste) {
+      solicitudes.push(nuevaSolicitud);
+      localStorage.setItem("solicitudes", JSON.stringify(solicitudes));
+    }
+
     setIsSubmitting(false);
-    onNext(); // avanza al siguiente paso del flow
+    onNext();
   };
 
   const confirmCancel = () => {
@@ -79,17 +149,22 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
       alcaldia: "",
       colonia: "",
       telefono: "",
+      telefonoLocal: "",
       correo: "",
       nombre: "",
       apellido1: "",
+      apellido2: "",
+      curp: "",
+      calle: "",
+      numExt: "",
+      numInt: "",
       folio: "",
     });
     setErrors({});
     setModalType(null);
-    navigate("/menu-principal"); // ✅ cancelar regresa al menú principal
+    navigate("/menu-principal"); 
   };
 
-  // Fetch colonias por CP
   useEffect(() => {
     const fetchDatosCP = async () => {
       if (formData.cp.length === 5) {
@@ -158,7 +233,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
             </div>
 
             <div className="p-8">
-              {/* Datos solicitante */}
+            
               <section className="mb-8">
                 <h3 className="text-red-600 text-lg font-bold">
                   Datos del solicitante
@@ -172,19 +247,22 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                 </p>
 
                 <div className="flex flex-col md:flex-row md:items-end gap-2">
-                  {/* Input CURP */}
+             
                   <div className="w-full md:w-1/2">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       CURP
                     </label>
                     <input
                       type="text"
+                      name="curp"
+                      value={formData.curp}
+                      onChange={handleChange}
                       placeholder="Ingresa los 18 dígitos del CURP"
                       className={inputBase}
                     />
                   </div>
 
-                  {/* Texto ayuda */}
+                
                   <div className="text-sm text-gray-700 md:ml-2 mt-2 md:mt-0">
                     ¿No conoce su CURP?{" "}
                     <a
@@ -207,6 +285,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                       name="nombre"
                       value={formData.nombre}
                       onChange={handleChange}
+                      autoComplete="off"
                       className={`${inputBase} ${
                         errors.nombre ? errorClass : ""
                       }`}
@@ -226,6 +305,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                       name="apellido1"
                       value={formData.apellido1}
                       onChange={handleChange}
+                      autoComplete="off"
                       className={`${inputBase} ${
                         errors.apellido1 ? errorClass : ""
                       }`}
@@ -242,6 +322,10 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                       Segundo Apellido
                     </label>
                     <input
+                      name="apellido2"
+                      value={formData.apellido2}
+                      onChange={handleChange}
+                      autoComplete="off"
                       className={inputBase}
                       placeholder="Ingresa el segundo apellido"
                     />
@@ -250,6 +334,10 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                   <div>
                     <label className="text-sm text-gray-700">Calle</label>
                     <input
+                      name="calle"
+                      value={formData.calle}
+                      onChange={handleChange}
+                      autoComplete="off"
                       className={inputBase}
                       placeholder="Ingresa el nombre de la calle"
                     />
@@ -258,13 +346,27 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                     <label className="text-sm text-gray-700">
                       Número exterior
                     </label>
-                    <input className={inputBase} placeholder="Número" />
+                    <input
+                      name="numExt"
+                      value={formData.numExt}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      className={inputBase}
+                      placeholder="Número"
+                    />
                   </div>
                   <div>
                     <label className="text-sm text-gray-700">
                       Número interior
                     </label>
-                    <input className={inputBase} placeholder="Número" />
+                    <input
+                      name="numInt"
+                      value={formData.numInt}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      className={inputBase}
+                      placeholder="Número"
+                    />
                   </div>
 
                   <div>
@@ -276,6 +378,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                       name="cp"
                       value={formData.cp}
                       onChange={handleChange}
+                      autoComplete="off"
                       placeholder="Ingresa el código postal"
                       className={inputBase}
                     />
@@ -288,6 +391,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                       name="alcaldia"
                       value={formData.alcaldia}
                       onChange={handleChange}
+                      autoComplete="off"
                       className={inputBase}
                     />
                   </div>
@@ -298,6 +402,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                       name="colonia"
                       value={formData.colonia}
                       onChange={handleChange}
+                      autoComplete="off"
                       className={inputBase}
                     >
                       <option value="">Selecciona la colonia</option>
@@ -311,7 +416,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                 </div>
               </section>
 
-              {/* Contacto */}
+        
               <section className="mb-8">
                 <h3 className="text-red-600 text-lg font-bold">
                   Medios de contacto
@@ -328,6 +433,7 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                       name="telefono"
                       value={formData.telefono}
                       onChange={handleChange}
+                      autoComplete="off"
                       className={`${inputBase} ${
                         errors.telefono ? errorClass : ""
                       }`}
@@ -341,13 +447,13 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                   </div>
                   <div>
                     <label className="text-sm text-gray-700">
-                      Correo electrónico{" "}
-                      <span className="text-red-600">*</span>
+                      Correo electrónico <span className="text-red-600">*</span>
                     </label>
                     <input
                       name="correo"
                       value={formData.correo}
                       onChange={handleChange}
+                      autoComplete="off"
                       className={`${inputBase} ${
                         errors.correo ? errorClass : ""
                       }`}
@@ -363,36 +469,37 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
                     <label className="text-sm text-gray-700">
                       Teléfono local (opcional)
                     </label>
-                    <input className={inputBase} placeholder="55 55555555" />
+                    <input
+                      name="telefonoLocal"
+                      value={formData.telefonoLocal}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      className={inputBase}
+                      placeholder="55 55555555"
+                    />
                   </div>
                 </div>
               </section>
 
-              {/* Folio */}
+             
               <section className="mb-8">
                 <h3 className="text-red-600 text-lg font-bold">
                   Folio de Atención Ciudadana
                 </h3>
                 <p className="text-gray-800 text-sm font-semibold mb-4">
-                  Ingresa el folio de Cédula de Atención Ciudadana
+                  Ingresa el folio de Cédula de Atención Ciudadana (opcional)
                 </p>
                 <input
                   name="folio"
                   value={formData.folio}
                   onChange={handleChange}
-                  className={`w-full md:w-1/2 border px-3 py-2 text-sm rounded-md ${
-                    errors.folio ? errorClass : ""
-                  }`}
-                  placeholder="Ingresa el folio"
+                  autoComplete="off"
+                  className="w-full md:w-1/2 border px-3 py-2 text-sm rounded-md"
+                  placeholder="Ingresa el folio (opcional)"
                 />
-                {errors.folio && (
-                  <p className="text-red-600 text-xs mt-1">
-                    Este campo es obligatorio
-                  </p>
-                )}
               </section>
 
-              {/* Botones */}
+            
               <div className="flex flex-col md:flex-row md:justify-end gap-3 mt-6">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -416,7 +523,6 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Modales */}
       {modalType === "cancel" && (
         <Modal
           title="¿Estás seguro que deseas cancelar?"
@@ -437,13 +543,11 @@ function FormularioAudienciaPublica({ onBack, onNext }) {
         />
       )}
 
-      {/* Loading */}
       {isSubmitting && <LoadingOverlay text="Enviando solicitud..." />}
     </>
   );
 }
 
 export default FormularioAudienciaPublica;
-
 
 

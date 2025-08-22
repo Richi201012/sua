@@ -61,7 +61,7 @@
       }
     },
     {
-      "id":"documento-gira-evento",
+      "id": "documento-gira-evento",
       "path": "/documento-gira-evento",
       "component": "DocumentoGiraEvento",
       "name": "Documento Gira Evento",
@@ -109,7 +109,7 @@
       }
     },
     {
-      "id":"documento-audiencia-publica",
+      "id": "documento-audiencia-publica",
       "path": "/documento-audiencia-publica",
       "component": "DocumentoAudienciaPublica",
       "name": "Documento Audiencia Pública",
@@ -156,7 +156,6 @@
         "description": "Formulario para solicitar una audiencia pública con flujo"
       }
     },
-
     {
       "id": "bandeja-page",
       "path": "/bandejaPage",
@@ -167,6 +166,18 @@
       "meta": {
         "title": "Bandeja de Entrada - Sistema de atención ciudadana",
         "description": "Página para gestionar la bandeja de entrada"
+      }
+    },
+    {
+      "id": "detalle-page",
+      "path": "/detalle",
+      "component": "DetallePage",
+      "name": "Detalle de Solicitud",
+      "showInNav": false,
+      "icon": "eye",
+      "meta": {
+        "title": "Detalle de Solicitud - Sistema de atención ciudadana",
+        "description": "Página para consultar el detalle de una solicitud y su historial"
       }
     }
   ]

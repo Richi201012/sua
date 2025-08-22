@@ -12,17 +12,19 @@ function MenuPrincipal() {
 
   const [isExiting, setIsExiting] = useState(false)
   const [nextRoute, setNextRoute] = useState(null)
-  const [loading, setLoading] = useState(false) // 
+  const [loading, setLoading] = useState(false) 
+  const [procedencia, setProcedencia] = useState(null) 
 
-  const handleNavigate = (ruta) => {
-    // Activa el loader primero
+  const handleNavigate = (ruta, tipo) => {
+    
     setLoading(true)
+    setProcedencia(tipo)
 
-    // Simula un proceso corto (ej: validación, fetch, etc.)
+    
     setTimeout(() => {
-      setNextRoute(ruta)
-      setIsExiting(true)
-      setLoading(false) //
+      
+      navigate(ruta, { state: { procedencia: tipo } })
+      setLoading(false)
     }, 1200)
   }
 
@@ -33,7 +35,7 @@ function MenuPrincipal() {
 
   return (
     <Layout>
-      {/* Loader global que aparece arriba de todo */}
+ 
       {loading && <LoadingScreen animation="changing" text="Redirigiendo..." />}
 
       <motion.div
@@ -42,11 +44,6 @@ function MenuPrincipal() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={isExiting ? 'exit' : 'enter'}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
-        onAnimationComplete={() => {
-          if (isExiting && nextRoute) {
-            navigate(nextRoute)
-          }
-        }}
       >
         <main className="flex-grow w-full flex justify-center py-12 px-4">
           <div className="bg-white rounded-3xl shadow-md w-full max-w-7xl min-h-[calc(100vh-4rem)]">
@@ -77,9 +74,11 @@ function MenuPrincipal() {
             </div>
 
             <div className="flex flex-col gap-6 items-center w-full px-12 pt-20 pb-8">
-              {/* Botón Gira o Evento */}
+          
               <button
-                onClick={() => handleNavigate('/solicitud-gira-evento-flow')}
+                onClick={() =>
+                  handleNavigate('/solicitud-gira-evento-flow', 'Gira o Evento')
+                }
                 className="w-full max-w-[520px] bg-gray-100 py-6 px-8 rounded-lg shadow text-[#991C3E] border border-[#991C3E] hover:shadow-md flex items-center space-x-6"
               >
                 <FaRegCalendarCheck className="text-5xl shrink-0" />
@@ -88,9 +87,11 @@ function MenuPrincipal() {
                 </span>
               </button>
 
-              {/* Botón Audiencia Pública */}
+         
               <button
-                onClick={() => handleNavigate('/solicitud-audiencia-flow')}
+                onClick={() =>
+                  handleNavigate('/solicitud-audiencia-flow', 'Audiencia Pública')
+                }
                 className="w-full max-w-[520px] bg-gray-100 py-6 px-8 rounded-lg shadow text-[#991C3E] border border-[#991C3E] hover:shadow-md flex items-center space-x-6"
               >
                 <FaUsers className="text-5xl shrink-0" />
@@ -108,4 +109,5 @@ function MenuPrincipal() {
 }
 
 export default MenuPrincipal
+
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "../components/ui/Modal";
 
-function Reporte_Audiencia({ onNext }) {  // 👈 ya no usamos onBack
+function Reporte_Audiencia({ onNext }) {
   const [mensaje, setMensaje] = useState("");
   const [atendido, setAtendido] = useState(false);
   const [quienAyudo, setQuienAyudo] = useState("");
@@ -23,8 +23,8 @@ function Reporte_Audiencia({ onNext }) {  // 👈 ya no usamos onBack
   const navegarConAnimacion = (accion) => {
     setIsExiting(true);
     setTimeout(() => {
-      if (accion === "next") onNext?.();   // 👈 avanza en el flow
-      if (accion === "menu") window.location.href = "/menu-principal"; // 👈 redirige al menú
+      if (accion === "next") onNext?.();
+      if (accion === "menu") window.location.href = "/menu-principal";
     }, 400);
   };
 
@@ -34,13 +34,28 @@ function Reporte_Audiencia({ onNext }) {  // 👈 ya no usamos onBack
     setQuienAyudo("");
     setErrorAyudo(false);
     setModalType(null);
-    navegarConAnimacion("menu"); // 👈 vuelve al menú principal
+    navegarConAnimacion("menu");
   };
 
   const handleSiguiente = () => {
     if (!mensaje.trim()) return setModalType("error");
     if (atendido && !quienAyudo.trim()) return setErrorAyudo(true);
-    navegarConAnimacion("next"); // 👈 avanza al siguiente tab
+
+    
+    const nuevaSolicitud = {
+      solicitante: quienAyudo || "—",
+      procedencia: "Audiencia Pública",
+      estatus: ["Turnado", "En Proceso", "En revisión"][
+        Math.floor(Math.random() * 3)
+      ],
+      folioCedula: Math.random().toString(36).substring(2, 9).toUpperCase(), 
+      capturista: "Sistema SAC",
+    };
+
+  
+    console.log("Solicitud creada:", nuevaSolicitud);
+
+    navegarConAnimacion("next");
   };
 
   return (
@@ -88,9 +103,7 @@ function Reporte_Audiencia({ onNext }) {  // 👈 ya no usamos onBack
                     value={mensaje}
                     onChange={(e) => setMensaje(e.target.value)}
                     className={`w-full p-3 border rounded resize-none ${
-                      caracteresRestantes < 0
-                        ? "border-red-500"
-                        : "border-gray-300"
+                      caracteresRestantes < 0 ? "border-red-500" : "border-gray-300"
                     }`}
                   />
 
@@ -172,7 +185,7 @@ function Reporte_Audiencia({ onNext }) {  // 👈 ya no usamos onBack
         )}
       </AnimatePresence>
 
-      {/* Modales */}
+
       {modalType === "cancel" && (
         <Modal
           title="¿Estás seguro?"
@@ -196,4 +209,3 @@ function Reporte_Audiencia({ onNext }) {  // 👈 ya no usamos onBack
 }
 
 export default Reporte_Audiencia;
-

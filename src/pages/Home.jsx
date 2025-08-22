@@ -2,20 +2,20 @@ import Layout from "../layouts/SimpleLayout";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import imgSac from "../assets/img/img-sac.png";
-import LoadingScreen from "../components/loaders/LoadingScreen"; // 👈 importa tu loader
+import LoadingScreen from "../components/loaders/LoadingScreen"; 
 
 function Home() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true); // carga inicial
-  const [loadingRedirect, setLoadingRedirect] = useState(false); // carga cuando redirige
+  const [loading, setLoading] = useState(true); 
+  const [loadingRedirect, setLoadingRedirect] = useState(false); 
 
-  // Simular carga inicial
+  
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Manejar click en botón
+
   const handleLoginRedirect = () => {
     setLoadingRedirect(true);
     setTimeout(() => {
@@ -23,14 +23,14 @@ function Home() {
     }, 1500);
   };
 
-  // Mostrar pantalla de carga
+  
   if (loading || loadingRedirect) {
     return (
       <LoadingScreen
         animation="changing"
         text="Cargando datos..."
         size={70}
-        color="#9f2241" // guinda institucional
+        color="#9f2241" 
       />
     );
   }
@@ -39,7 +39,7 @@ function Home() {
     <Layout>
       <main className="bg-gray-50 min-h-screen flex flex-col justify-between">
         <section className="flex flex-col md:flex-row items-center justify-between max-w-4xl mx-auto px-6 py-10 flex-grow">
-          {/* Columna de texto */}
+        
           <div className="md:w-1/2 flex flex-col justify-between h-full">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
@@ -61,7 +61,7 @@ function Home() {
             </button>
           </div>
 
-          {/* Imagen */}
+
           <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
             <img
               src={imgSac}
