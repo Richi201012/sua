@@ -64,26 +64,28 @@ function SolicitudCorreo(){
             </p>
           </div>
 
-          <div className="relative mb-10">
-            <textarea
-              placeholder="Describe el tema que el ciudadano quiere tratar o reportar"
-              rows={12}
-              value={mensaje}
-              onChange={(e) => setMensaje(e.target.value)}
-              className={`w-full p-4 border rounded resize-none text-gray-700 text-lg ${
-                caracteresRestantes < 0 ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            <div
-              className={`absolute bottom-2 right-3 text-sm ${
-                caracteresRestantes < 0
-                  ? "text-red-600 font-semibold"
-                  : "text-gray-500"
-              }`}
-            >
-              {caracteresRestantes}/500
-            </div>
-          </div>
+             <div className="mb-10">
+  <textarea
+    placeholder="Describe el tema que el ciudadano quiere tratar o reportar"
+    rows={12}
+    value={mensaje}
+    onChange={(e) => setMensaje(e.target.value)}
+    className={`w-full p-4 border rounded resize-none text-gray-700 text-lg ${
+      caracteresRestantes < 0 ? "border-red-500" : "border-gray-300"
+    }`}
+  />
+  <div className="flex justify-end mt-1">
+    <span
+      className={`text-sm ${
+        caracteresRestantes < 0
+          ? "text-red-600 font-semibold"
+          : "text-gray-500"
+      }`}
+    >
+      {caracteresRestantes}/500
+    </span>
+  </div>
+</div>
 
           <div className="flex flex-col sm:flex-row justify-end gap-4 pt-6">
             <button
