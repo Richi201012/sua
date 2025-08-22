@@ -56,9 +56,10 @@ function BandejaPage() {
 
   return (
     <Layout>
+      {/* 👇 quitamos NavBar, Layout ya lo maneja */}
       <main className="min-h-screen bg-gray-100 flex flex-col items-center font-sans">
         <div className="w-full max-w-7xl p-4 md:p-6 mt-6 mb-6">
-         
+          {/* 🔹 Botones superiores */}
           <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
             <button
               className="text-sm text-blue-600 hover:underline self-start sm:self-auto"
@@ -75,10 +76,9 @@ function BandejaPage() {
             </button>
           </div>
 
-       
+          {/* 🔹 Sección filtros */}
           <section className="bg-white border border-gray-200 rounded-lg p-6 shadow-md mb-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-        
               <div className="flex flex-col">
                 <label className="text-xs font-medium text-gray-700 mb-1">Folio</label>
                 <input
@@ -165,7 +165,7 @@ function BandejaPage() {
             </div>
           </section>
 
-         
+          {/* 🔹 Sección tabla */}
           <section className="bg-white border border-gray-200 rounded-lg p-6 shadow-md flex flex-col min-h-[70vh]">
             <div className="overflow-x-auto">
               <table className="w-full text-xs sm:text-sm text-left border border-gray-300 border-collapse">

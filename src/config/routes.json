@@ -37,6 +37,18 @@
       }
     },
     {
+      "id": "menu-principal-2",
+      "path": "/menu-principal2",
+      "component": "MenuPrincipal2",
+      "name": "Menú Principal 2",
+      "showInNav": true,
+      "icon": "menu",
+      "meta": {
+        "title": "Menú Principal 2 - Sistema de atención ciudadana",
+        "description": "Acceso a la nueva versión del menú principal del sistema de atención ciudadana"
+      }
+    },
+    {
       "id": "solicitud-gira-evento",
       "path": "/solicitud-gira-evento",
       "component": "SolicitudGiraEvento",
@@ -179,6 +191,104 @@
         "title": "Detalle de Solicitud - Sistema de atención ciudadana",
         "description": "Página para consultar el detalle de una solicitud y su historial"
       }
+    },
+    {
+      "id": "documento-oficialia",
+      "path": "/documento-oficialia",
+      "component": "DocumentoOficilia",
+      "name": "Documento Oficialía",
+      "showInNav": true,
+      "icon": "official",
+      "meta": {
+        "title": "Documento Oficialía - Sistema de atención ciudadana",
+        "description": "Subir documento para un reporte a oficialía"   
+      }
+    },
+    {
+      "id": "solicitud-oficialia",
+      "path": "/solicitud-oficialia",
+      "component": "SolicitudOficialia",
+      "name": "Solicitud Oficialía",
+      "showInNav": true,
+      "icon": "official-request",
+      "meta": {
+        "title": "Solicitud Oficialía - Sistema de atención ciudadana",
+        "description": "Formulario para una solicitud a oficialía"
+      }
+    },
+    {
+      "id": "formulario-oficialia",
+      "path": "/formulario-oficialia",
+      "component": "FormularioOficialia",
+      "name": "Formulario Oficialía",
+      "showInNav": false,
+      "icon": "form",
+      "meta": {
+        "title": "Formulario Oficialía - Sistema de atención ciudadana",
+        "description": "Formulario para completar detalles de la solicitud a oficialía"
+      }
+    },
+    {
+      "id": "registro-oficialia",
+      "path": "/registro-oficialia",
+      "component": "RegistroOficialia",
+      "name": "Registro Oficialía",
+      "showInNav": false,
+      "icon": "register",
+      "meta": {
+        "title": "Registro Oficialía - Sistema de atención ciudadana",
+        "description": "Página para registrar la solicitud a oficialía"
+      }
+    },
+    {
+      "id": "solicitud-correo",
+      "path": "/solicitud-correo",
+      "component": "SolicitudCorreo",
+      "name": "Solicitud Correo Electrónico",
+      "showInNav": true,
+      "icon": "email-request",
+      "meta": {
+        "title": "Solicitud Correo Electrónico - Sistema de atención ciudadana",
+        "description": "Formulario para solicitar un correo electrónico"
+      }
+    },
+    {
+      "id": "formulario-correo",
+      "path": "/formulario-correo",
+      "component": "FormularioCorreo",
+      "name": "Formulario Correo Electrónico",
+      "showInNav": false,
+      "icon": "form",
+      "meta": {
+        "title": "Formulario Correo Electrónico - Sistema de atención ciudadana",
+        "description": "Formulario para completar detalles de la solicitud de correo electrónico"
+      }
+    },
+    {
+      "id": "documento-correo",
+      "path": "/documento-correo",
+      "component": "DocumentoCorreo",
+      "name": "Documento Correo Electrónico",
+      "showInNav": false,
+      "icon": "register",
+      "meta": {
+        "title": "Registro Correo Electrónico - Sistema de atención ciudadana",
+        "description": "Página para adjuntar un documento de la solicitud de correo electrónico"
+      }
+    },
+    {
+      "id": "registro-correo",
+      "path": "/registro-correo",
+      "component": "RegistroCorreo",
+      "name": "Registro Correo Electrónico",
+      "showInNav": false,
+      "icon": "register",
+      "meta": {
+        "title": "Registro Correo Electrónico - Sistema de atención ciudadana",
+        "description": "Página para registrar la solicitud de correo electrónico"
+      }
     }
+
   ]
 }
+
