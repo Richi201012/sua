@@ -287,6 +287,30 @@
         "title": "Registro Correo Electrónico - Sistema de atención ciudadana",
         "description": "Página para registrar la solicitud de correo electrónico"
       }
+    },
+    {
+      "id": "bandeja-page-2",
+      "path": "/bandejaPage2",
+      "component": "BandejaPage2",
+      "name": "Bandeja de Entrada 2",
+      "showInNav": true,
+      "icon": "inbox",
+      "meta": {
+        "title": "Bandeja de Entrada 2 - Sistema de atención ciudadana",
+        "description": "Página para gestionar la bandeja de entrada en la nueva versión"
+      }
+    },
+    {
+      "id": "detalle-page-2",
+      "path": "/detallePage2",
+      "component": "DetallePage2",
+      "name": "Detalle de Solicitud 2",
+      "showInNav": false,
+      "icon": "eye",
+      "meta": {
+        "title": "Detalle de Solicitud 2 - Sistema de atención ciudadana",
+        "description": "Página para consultar el detalle de una solicitud y su historial en la nueva versión"
+      }
     }
 
   ]

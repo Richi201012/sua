@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import Layout from "../layouts/SimpleLayout";
 import { FunnelIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 
-function BandejaPage() {
+function BandejaPage2() {
   const navigate = useNavigate();
 
   const [filtros, setFiltros] = useState({
@@ -69,7 +69,7 @@ function BandejaPage() {
             </button>
 
             <button
-              onClick={() => navigate("/menu-principal")}
+              onClick={() => navigate("/menu-principal2")}
               className="bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md flex items-center gap-2 transition-transform transform hover:scale-105"
             >
               🏠 Menú principal
@@ -195,7 +195,7 @@ function BandejaPage() {
                         <td className="px-2 sm:px-4 py-2 border border-gray-300 text-center flex justify-center gap-2 sm:gap-3">
                           <button
                             onClick={() =>
-                              navigate("/detalle", {
+                              navigate("/detallePage2", {
                                 state: { solicitudes: data, currentIndex: index },
                               })
                             }
@@ -229,7 +229,4 @@ function BandejaPage() {
   );
 }
 
-export default BandejaPage;
-
-
-
+export default BandejaPage2;
