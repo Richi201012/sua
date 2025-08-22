@@ -56,7 +56,7 @@ function BandejaPage2() {
 
   return (
     <Layout>
-      {/* 👇 quitamos NavBar, Layout ya lo maneja */}
+     
       <main className="min-h-screen bg-gray-100 flex flex-col items-center font-sans">
         <div className="w-full max-w-7xl p-4 md:p-6 mt-6 mb-6">
           {/* 🔹 Botones superiores */}

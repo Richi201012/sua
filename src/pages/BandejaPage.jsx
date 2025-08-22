@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// ❌ Quitamos: import Layout from "../components/layout/Layout";
+
 
 import { FunnelIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
